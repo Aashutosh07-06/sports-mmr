@@ -36,6 +36,8 @@ class Settings:
     cors_origins = [o.strip() for o in (os.getenv("CORS_ORIGINS") or
                     "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173").split(",") if o.strip()]
     games = ["csgo", "pubg", "valorant", "dota2"]
+    # built React app, served by FastAPI in single-command mode (start.bat)
+    frontend_dist = Path(os.getenv("FRONTEND_DIST") or PROJECT_ROOT / "frontend" / "dist")
 
 
 settings = Settings()

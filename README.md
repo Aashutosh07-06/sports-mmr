@@ -50,7 +50,8 @@ sports mmr/
 ├── frontend/               # React + Vite + Tailwind + Recharts
 │   └── src/{pages,components,layouts,hooks,services,utils,styles,test}/
 ├── docs/                   # report, methodology, datasets, testing, user guide, viva, diagrams, screenshots
-├── scripts/                # Windows .bat helpers + e2e_check.py
+├── scripts/                # Windows .bat helpers, Desktop shortcut, e2e_check.py
+├── run.bat                 # ONE-CLICK START (serves the whole app on http://localhost:8000)
 ├── requirements.txt  .env.example  .gitignore
 └── Gaming & Esports MMR Predictor.pptx   # original presentation
 ```
@@ -62,7 +63,20 @@ sports mmr/
 - **Node.js 20+** (developed with Node 24)
 - About 3 GB of free disk space for the datasets
 
-## Quick start (Windows)
+## Quick start (Windows): one click
+
+**Double-click `run.bat`** in the project folder (or type `run` in a terminal there).
+
+- On the first run on a computer it installs everything (a few minutes).
+- After that it builds the website, starts the server and opens **http://localhost:8000** in your browser.
+- Keep the black window open while you use the app; close it to stop.
+
+For a Desktop icon, run `scripts\create_shortcut.bat` once. It creates **Statline** on your Desktop.
+
+In this mode, FastAPI serves both the API and the built React app from one address, so Node is only needed to
+build the site. The two-terminal setup below is for development, with live reload on port 5173.
+
+## Development setup (Windows)
 
 ```bat
 REM 1. one-time setup (virtual environment + Python and npm packages)
@@ -130,6 +144,7 @@ Interactive documentation: http://localhost:8000/docs
 
 | Problem | Fix |
 |---|---|
+| `run.bat` says port 8000 is busy | Statline is already open in another window; double-clicking again just opens the browser |
 | UI shows **"Backend not reachable"** | Start the backend (`scripts\run_backend.bat`) and check http://localhost:8000/api/health |
 | A game shows **Unavailable** | Its model is not trained: `python -m ml.<game>.train`, then restart the backend |
 | `ModuleNotFoundError: ml` | Run training commands from the **project root**; start uvicorn from **backend/** |

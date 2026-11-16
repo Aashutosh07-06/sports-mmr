@@ -162,7 +162,8 @@ research (which needs real rank labels), tuning, uncertainty ranges, cloud hosti
 | 9:00 | **History** | SQLite history, no personal data |
 | 9:30 | Show `http://localhost:8000/docs` and run the tests (`scripts\run_tests.bat`) | API documentation and passing tests |
 
-**Before the demo:** start both servers, open the pages once, and clear the history if you want a clean list.
+**Before the demo:** double-click the **Statline** Desktop icon (or `run.bat`), open each page once, and clear
+the history if you want a clean list.
 Test the laptop **offline** too: fonts and all data are local, so no internet connection is needed.
 
 ---

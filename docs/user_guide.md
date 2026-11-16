@@ -2,9 +2,14 @@
 
 ## Starting the application
 
-1. Start the backend: `scripts\run_backend.bat`. Wait for `Application startup complete`.
-2. Start the frontend: `scripts\run_frontend.bat`.
-3. Open **http://localhost:5173**. The status dot in the top bar should read **API online · 4/4 models**.
+**One click:** double-click **`run.bat`** in the project folder, or the **Statline** icon on the Desktop (create it
+once with `scripts\create_shortcut.bat`). The browser opens **http://localhost:8000** automatically. Keep the
+black window open while you use the app, and close it to stop.
+
+The status dot in the top bar should read **API online · 4/4 models**.
+
+*Developer mode, with live reload:* `scripts\run_backend.bat` and `scripts\run_frontend.bat` in two terminals,
+then open http://localhost:5173.
 
 ## Making a prediction
 

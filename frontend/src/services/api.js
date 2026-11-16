@@ -3,7 +3,9 @@
  */
 import axios from 'axios'
 
-export const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
+// Dev server (npm run dev, port 5173) talks to the API on port 8000.
+// The production build is served BY the API itself (start.bat), so a relative path works.
+export const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000/api' : '/api')
 
 const http = axios.create({ baseURL: API_BASE, timeout: 30000 })
 

@@ -18,7 +18,8 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-BASE = "http://localhost:5173"
+import os
+BASE = os.getenv("E2E_BASE", "http://localhost:5173")
 OUT = Path(__file__).resolve().parents[1] / "docs" / "screenshots"
 OUT.mkdir(parents=True, exist_ok=True)
 GAMES = ["csgo", "pubg", "valorant", "dota2"]

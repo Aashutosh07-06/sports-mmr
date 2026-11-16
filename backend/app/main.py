@@ -9,10 +9,10 @@ from __future__ import annotations
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 
 from app.core.config import settings  # noqa: F401  (adds project root to sys.path)
 from app.api.routes import router
@@ -49,6 +49,24 @@ async def unhandled(request: Request, exc: Exception):
     return JSONResponse(status_code=500, content={"status": "error", "detail": "Internal server error"})
 
 
-@app.get("/")
-def root():
-    return {"name": settings.app_name, "docs": "/docs", "health": "/api/health"}
+# ---------------------------------------------------------------- single-command mode
+# If the React app has been built (frontend/dist), serve it from this same server so the
+# whole application runs on one address: http://localhost:8000  (see start.bat).
+DIST = settings.frontend_dist.resolve()
+if (DIST / "index.html").exists():
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    def frontend(full_path: str):
+        if full_path.startswith("api/") or full_path == "api":
+            raise HTTPException(404, detail="Not found")
+        candidate = (DIST / full_path).resolve()
+        # serve real files (JS/CSS/fonts/icons); any other path is a React route -> index.html
+        if full_path and candidate.is_file() and DIST in candidate.parents:
+            return FileResponse(candidate)
+        return FileResponse(DIST / "index.html")
+else:
+
+    @app.get("/")
+    def root():
+        return {"name": settings.app_name, "docs": "/docs", "health": "/api/health",
+                "note": "Frontend not built. Run start.bat, or 'npm run build' in frontend/."}
