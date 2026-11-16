@@ -1,0 +1,3 @@
+# Installs everything (ML pipeline + backend + tests). Run from the project root:
+#   python -m pip install -r requirements.txt
+-r backend/requirements.txt

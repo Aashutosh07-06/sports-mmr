@@ -1,0 +1,169 @@
+{
+  "game": "csgo",
+  "name": "CS:GO",
+  "task": "regression",
+  "target_name": "HLTV Performance Rating",
+  "selected_model": "XGBoost",
+  "selection_metric": "rmse",
+  "models": [
+    {
+      "model": "Linear Regression",
+      "test": {
+        "r2": 0.9748092023383444,
+        "mae": 0.04184265833014947,
+        "mse": 0.0028754240376639693,
+        "rmse": 0.05362298049963252
+      },
+      "train": {
+        "r2": 0.9744985940973997,
+        "mae": 0.04208602687668461,
+        "mse": 0.0029040526122456572,
+        "rmse": 0.05388926249491319
+      },
+      "fit_seconds": 0.1,
+      "selected": false
+    },
+    {
+      "model": "Decision Tree",
+      "test": {
+        "r2": 0.9709685139870117,
+        "mae": 0.04515607593970854,
+        "mse": 0.003313822525672477,
+        "rmse": 0.057565810388393535
+      },
+      "train": {
+        "r2": 0.9751596362072583,
+        "mae": 0.04185752997530288,
+        "mse": 0.0028287743678511515,
+        "rmse": 0.053186223477994295
+      },
+      "fit_seconds": 1.0,
+      "selected": false
+    },
+    {
+      "model": "Random Forest",
+      "test": {
+        "r2": 0.9774064538626621,
+        "mae": 0.0398899803073634,
+        "mse": 0.0025789586551385685,
+        "rmse": 0.05078344863376815
+      },
+      "train": {
+        "r2": 0.9841601676847741,
+        "mae": 0.033224042841485724,
+        "mse": 0.0018038106051194022,
+        "rmse": 0.04247129154051478
+      },
+      "fit_seconds": 7.46,
+      "selected": false
+    },
+    {
+      "model": "Gradient Boosting",
+      "test": {
+        "r2": 0.977831110108536,
+        "mae": 0.0393645203544165,
+        "mse": 0.002530485923408111,
+        "rmse": 0.05030393546640373
+      },
+      "train": {
+        "r2": 0.9784431433430439,
+        "mae": 0.038896084954792014,
+        "mse": 0.0024548546901900447,
+        "rmse": 0.04954649019042665
+      },
+      "fit_seconds": 2.04,
+      "selected": false
+    },
+    {
+      "model": "XGBoost",
+      "test": {
+        "r2": 0.9780924712728493,
+        "mae": 0.0390925225434498,
+        "mse": 0.0025006526412519707,
+        "rmse": 0.050006525986634694
+      },
+      "train": {
+        "r2": 0.9804788487934982,
+        "mae": 0.037157871160811186,
+        "mse": 0.002223032344640392,
+        "rmse": 0.04714904394195488
+      },
+      "fit_seconds": 5.31,
+      "selected": true
+    }
+  ],
+  "cross_validation": {
+    "metric": "r2",
+    "folds": 3,
+    "scores": [
+      0.9775720087017342,
+      0.9776428562106418,
+      0.9774297823372982
+    ],
+    "mean": 0.9775482157498914,
+    "std": 8.859908687816061e-05
+  },
+  "dataset": {
+    "name": "CS:GO Professional Matches (HLTV scrape, 2015\u20132020)",
+    "url": "https://www.kaggle.com/datasets/mateusdmachado/csgo-professional-matches",
+    "unit_of_analysis": "One player on one map of a professional match",
+    "raw_rows": 383317,
+    "clean_rows": 439078,
+    "train_rows": 300000,
+    "test_rows": 93538,
+    "n_groups": 4972,
+    "group_column": "player_id",
+    "n_input_fields": 8,
+    "n_model_features": 9,
+    "cleaning_log": [
+      {
+        "step": "players.csv rows (player \u00d7 series)",
+        "rows_before": 383317,
+        "rows_after": 383317,
+        "removed": 0
+      },
+      {
+        "step": "Unpivot to player \u00d7 map; drop unplayed maps",
+        "rows_before": 1149951,
+        "rows_after": 648023,
+        "removed": 501928
+      },
+      {
+        "step": "Join rounds played from results.csv (drop unmatched)",
+        "rows_before": 648023,
+        "rows_after": 443737,
+        "removed": 204286
+      },
+      {
+        "step": "Drop rows missing KAST/ADR/rating",
+        "rows_before": 443737,
+        "rows_after": 439113,
+        "removed": 4624
+      },
+      {
+        "step": "Remove duplicate player-map records",
+        "rows_before": 439113,
+        "rows_after": 439113,
+        "removed": 0
+      },
+      {
+        "step": "Remove impossible values (rounds, deaths>rounds, HS>kills, KAST/ADR range)",
+        "rows_before": 439113,
+        "rows_after": 439078,
+        "removed": 35
+      }
+    ],
+    "target_summary": {
+      "count": 439078.0,
+      "mean": 1.0586333407731656,
+      "std": 0.33699504553154536,
+      "min": 0.05,
+      "25%": 0.83,
+      "50%": 1.04,
+      "75%": 1.27,
+      "max": 3.23
+    }
+  },
+  "trained_at": "2026-11-16T09:00:25+00:00",
+  "training_seconds": 31.0
+}

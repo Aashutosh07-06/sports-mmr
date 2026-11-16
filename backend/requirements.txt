@@ -1,0 +1,11 @@
+# Backend API (also needs the ML libraries to load models and compute SHAP)
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+sqlalchemy>=2.0
+-r ../ml/requirements.txt
+# testing
+pytest>=8
+httpx>=0.27
+# browser end-to-end check (scripts/e2e_check.py); browsers: python -m playwright install chromium
+playwright>=1.45

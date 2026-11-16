@@ -1,0 +1,41 @@
+{
+  "experiment": "VALORANT rank-tier predictability from aggregated ranked statistics (val_stats.csv)",
+  "raw_rows": 85678,
+  "rows_used": 84496,
+  "rank_distribution": {
+    "Immortal 1": 51315,
+    "Immortal 2": 20716,
+    "Immortal 3": 10936,
+    "Radiant": 2607,
+    "Diamond 3": 42,
+    "Platinum 1": 10,
+    "Unrated": 9,
+    "Gold 2": 8,
+    "Gold 1": 5,
+    "Gold 3": 5,
+    "Silver 3": 5,
+    "Silver 2": 4,
+    "Bronze 2": 4,
+    "Platinum 2": 3,
+    "Diamond 1": 3,
+    "Bronze 3": 2,
+    "Silver 1": 2,
+    "Diamond 2": 1,
+    "Platinum 3": 1
+  },
+  "results": {
+    "Majority-class baseline": {
+      "accuracy": 0.5979289940828403,
+      "macro_f1": 0.1870949824106647
+    },
+    "Logistic Regression": {
+      "accuracy": 0.6047928994082841,
+      "macro_f1": 0.2927508492411582
+    },
+    "XGBoost": {
+      "accuracy": 0.6039644970414201,
+      "macro_f1": 0.32787851380734545
+    }
+  },
+  "conclusion": "99.9% of players in this file are Immortal 1\u20133 or Radiant. The best model (Logistic Regression) reaches 60.5% accuracy versus 59.8% for always predicting the most common tier (a gain of 0.7 percentage points; macro-F1 0.29). The aggregated stats barely separate rank tiers at the top of the ladder, so no rank/MMR model is deployed for VALORANT; the professional vlr.gg dataset is used for a Performance Rating model instead."
+}

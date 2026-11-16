@@ -1,0 +1,163 @@
+{
+  "game": "valorant",
+  "name": "VALORANT",
+  "task": "regression",
+  "target_name": "VLR Performance Rating",
+  "selected_model": "Linear Regression",
+  "selection_metric": "rmse",
+  "models": [
+    {
+      "model": "Linear Regression",
+      "test": {
+        "r2": 0.9537884424611255,
+        "mae": 0.05461336996130435,
+        "mse": 0.004780437645330978,
+        "rmse": 0.069140709031156
+      },
+      "train": {
+        "r2": 0.9517232102216916,
+        "mae": 0.05531173989139541,
+        "mse": 0.0048740621931316844,
+        "rmse": 0.0698144841213604
+      },
+      "fit_seconds": 0.1,
+      "selected": true
+    },
+    {
+      "model": "Decision Tree",
+      "test": {
+        "r2": 0.9439646606925225,
+        "mae": 0.06022606183990675,
+        "mse": 0.005796676410852783,
+        "rmse": 0.07613590750002776
+      },
+      "train": {
+        "r2": 0.9508961667120539,
+        "mae": 0.055732572629067875,
+        "mse": 0.004957561148238493,
+        "rmse": 0.0704099506336888
+      },
+      "fit_seconds": 0.78,
+      "selected": false
+    },
+    {
+      "model": "Random Forest",
+      "test": {
+        "r2": 0.9520927548500077,
+        "mae": 0.05564395928220438,
+        "mse": 0.004955851098644898,
+        "rmse": 0.07039780606414449
+      },
+      "train": {
+        "r2": 0.9658427062692123,
+        "mae": 0.046258418125287346,
+        "mse": 0.0034485469054060984,
+        "rmse": 0.058724329756976355
+      },
+      "fit_seconds": 5.76,
+      "selected": false
+    },
+    {
+      "model": "Gradient Boosting",
+      "test": {
+        "r2": 0.953522712706294,
+        "mae": 0.05483823229222948,
+        "mse": 0.004807926537528836,
+        "rmse": 0.06933921356295322
+      },
+      "train": {
+        "r2": 0.9532386244465249,
+        "mae": 0.054486839868317365,
+        "mse": 0.004721064795953614,
+        "rmse": 0.06871000506442722
+      },
+      "fit_seconds": 1.43,
+      "selected": false
+    },
+    {
+      "model": "XGBoost",
+      "test": {
+        "r2": 0.9536852406212978,
+        "mae": 0.054758654071229845,
+        "mse": 0.004791113545180592,
+        "rmse": 0.06921787012889513
+      },
+      "train": {
+        "r2": 0.9583136570916422,
+        "mae": 0.05143503011795879,
+        "mse": 0.004208685558268892,
+        "rmse": 0.06487438291243233
+      },
+      "fit_seconds": 3.81,
+      "selected": false
+    }
+  ],
+  "cross_validation": {
+    "metric": "r2",
+    "folds": 3,
+    "scores": [
+      0.9541920640923005,
+      0.9534164736569776,
+      0.9537647661415098
+    ],
+    "mean": 0.9537911012969293,
+    "std": 0.00031718058594364524
+  },
+  "dataset": {
+    "name": "Valorant Pro Matches since April 2021 (vlr.gg scrape, Kaggle)",
+    "url": "https://www.kaggle.com/datasets/qualidea1217/valorant-pro-matches-since-april-2021",
+    "unit_of_analysis": "One professional player on one map",
+    "raw_rows": 249710,
+    "clean_rows": 248348,
+    "train_rows": 199932,
+    "test_rows": 48416,
+    "n_groups": 8720,
+    "group_column": "player",
+    "n_input_fields": 11,
+    "n_model_features": 15,
+    "cleaning_log": [
+      {
+        "step": "data-since-april-2021.csv rows (player \u00d7 map)",
+        "rows_before": 249710,
+        "rows_after": 249710,
+        "removed": 0
+      },
+      {
+        "step": "Remove exact duplicate rows",
+        "rows_before": 249710,
+        "rows_after": 249490,
+        "removed": 220
+      },
+      {
+        "step": "Drop column-shifted rows (unknown agent value)",
+        "rows_before": 249490,
+        "rows_after": 249240,
+        "removed": 250
+      },
+      {
+        "step": "Drop rows with missing/non-numeric stats",
+        "rows_before": 249240,
+        "rows_after": 248772,
+        "removed": 468
+      },
+      {
+        "step": "Remove impossible values (rating>4, KAST/HS outside 0\u2013100 %, negatives, FK>K \u2026)",
+        "rows_before": 248772,
+        "rows_after": 248348,
+        "removed": 424
+      }
+    ],
+    "target_summary": {
+      "count": 248348.0,
+      "mean": 0.9978054584695668,
+      "std": 0.3224837675156674,
+      "min": 0.02,
+      "25%": 0.78,
+      "50%": 0.98,
+      "75%": 1.2,
+      "max": 2.84
+    }
+  },
+  "trained_at": "2026-11-16T09:18:45+00:00",
+  "training_seconds": 13.2
+}

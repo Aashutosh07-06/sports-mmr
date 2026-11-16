@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ design tokens
+   One place for the whole design system. Surfaces step up in lightness;
+   text uses three ink levels; violet = action, cyan = data highlight.
+   Chart colours (series/pos/neg) were validated for colour-blind separation
+   and contrast against the card surface (#151E30). */
+@theme {
+  --color-bg: #0B1020;
+  --color-bg-2: #111827;
+  --color-card: #151E30;
+  --color-card-2: #1B2640;
+  --color-line: #26324D;
+  --color-line-soft: #1D2842;
+
+  --color-ink: #F8FAFC;
+  --color-ink-2: #CBD5E1;
+  --color-muted: #94A3B8;
+  --color-faint: #6B7A93;
+
+  --color-violet: #8B5CF6;
+  --color-violet-hi: #A78BFA;
+  --color-violet-lo: #6D3FE0;
+  --color-cyan: #22D3EE;
+
+  --color-series-1: #8B5CF6;
+  --color-series-2: #0EA5C4;
+  --color-pos: #0EA5C4;
+  --color-neg: #E5484D;
+
+  --color-good: #22C55E;
+  --color-warn: #FAB219;
+  --color-bad: #E5484D;
+
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  min-height: 100vh;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-violet) 45%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-violet-hi);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* tabular numbers everywhere a number is compared */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* faint grid used only behind the hero */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, black 30%, transparent 75%);
+}
+
+/* number inputs: hide spinners, we validate ourselves */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Recharts: keep focus rings off SVG surfaces */
+.recharts-wrapper svg:focus,
+.recharts-surface:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

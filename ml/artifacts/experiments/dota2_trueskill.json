@@ -1,0 +1,57 @@
+{
+  "experiment": "Dota 2 TrueSkill (mu) predictability from per-match gameplay statistics",
+  "conclusion": "Gameplay statistics explain essentially none of the variance of TrueSkill mu (R\u00b2 \u2248 0; MAE equal to predicting the mean). Even the player's win rate within this sample barely correlates with mu, because the ratings were computed from a much larger match history (match_outcomes.csv) for which per-player statistics are not available. A skill-estimate model would therefore be meaningless, so the Dota 2 module predicts Win Probability instead.",
+  "results": [
+    {
+      "min_sample_games": 1,
+      "players": 60172,
+      "mu_std": 3.9628586904478715,
+      "baseline_mae_predict_mean": 3.1036214720278883,
+      "corr_sample_win_rate_vs_mu": 0.011251662494056753,
+      "models": {
+        "Linear Regression": {
+          "r2": 0.004010053282107573,
+          "mae": 3.0986627342497854
+        },
+        "XGBoost": {
+          "r2": 0.0028469389963889924,
+          "mae": 3.0960466842054486
+        }
+      }
+    },
+    {
+      "min_sample_games": 3,
+      "players": 20587,
+      "mu_std": 3.7465066483563274,
+      "baseline_mae_predict_mean": 2.9267383758453227,
+      "corr_sample_win_rate_vs_mu": 0.014411188551813052,
+      "models": {
+        "Linear Regression": {
+          "r2": 0.013240712833541002,
+          "mae": 2.912728387618952
+        },
+        "XGBoost": {
+          "r2": -0.009086562687104616,
+          "mae": 2.951490693993904
+        }
+      }
+    },
+    {
+      "min_sample_games": 5,
+      "players": 9474,
+      "mu_std": 3.54400753445678,
+      "baseline_mae_predict_mean": 2.7333358076890732,
+      "corr_sample_win_rate_vs_mu": 0.021443258089274633,
+      "models": {
+        "Linear Regression": {
+          "r2": 0.021642323522285456,
+          "mae": 2.712509458367279
+        },
+        "XGBoost": {
+          "r2": -0.02389355173384744,
+          "mae": 2.784811430020282
+        }
+      }
+    }
+  ]
+}

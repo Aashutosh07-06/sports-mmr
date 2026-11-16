@@ -1,0 +1,32 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Raw datasets: large (about 2.5 GB) and some licences forbid redistribution.
+# See README → "Dataset setup" for download links.
+data/raw/
+data/processed/
+
+# Trained models in ml/artifacts/ ARE committed (about 5 MB) so the app and tests
+# run straight after cloning, without retraining.
+
+# Local database (prediction history)
+backend/data/
+*.db
+
+# Environment
+.env
+frontend/.env
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+~$*.pptx

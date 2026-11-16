@@ -1,0 +1,7 @@
+# Normalise line endings: LF in the repo, except Windows batch files which need CRLF
+* text=auto eol=lf
+*.bat text eol=crlf
+*.png binary
+*.pptx binary
+*.joblib binary
+*.parquet binary

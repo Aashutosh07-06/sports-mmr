@@ -1,0 +1,179 @@
+{
+  "game": "dota2",
+  "name": "Dota 2",
+  "task": "classification",
+  "target_name": "Win Probability",
+  "selected_model": "XGBoost",
+  "selection_metric": "roc_auc",
+  "models": [
+    {
+      "model": "Logistic Regression",
+      "test": {
+        "accuracy": 0.8978552278820375,
+        "precision": 0.9023266131019865,
+        "recall": 0.8922983183036802,
+        "f1": 0.8972844468408412,
+        "roc_auc": 0.9616856393872885
+      },
+      "train": {
+        "accuracy": 0.89754,
+        "precision": 0.9031542433042917,
+        "recall": 0.8916099231473739,
+        "f1": 0.897344955415289,
+        "roc_auc": 0.9610228740817266
+      },
+      "fit_seconds": 0.55,
+      "selected": false
+    },
+    {
+      "model": "Decision Tree",
+      "test": {
+        "accuracy": 0.8895564221301486,
+        "precision": 0.88483856210724,
+        "recall": 0.8956860833536436,
+        "f1": 0.890229279459322,
+        "roc_auc": 0.9552570986353173
+      },
+      "train": {
+        "accuracy": 0.90892,
+        "precision": 0.902880658436214,
+        "recall": 0.9173336518934416,
+        "f1": 0.9100497748281583,
+        "roc_auc": 0.9726572997776973
+      },
+      "fit_seconds": 2.2,
+      "selected": false
+    },
+    {
+      "model": "Random Forest",
+      "test": {
+        "accuracy": 0.9077260541067511,
+        "precision": 0.9100647122266889,
+        "recall": 0.9048744820862783,
+        "f1": 0.9074621758365312,
+        "roc_auc": 0.9723731944115839
+      },
+      "train": {
+        "accuracy": 0.93758,
+        "precision": 0.938192396588826,
+        "recall": 0.9374825787440768,
+        "f1": 0.9378373533571016,
+        "roc_auc": 0.9875429742979822
+      },
+      "fit_seconds": 6.17,
+      "selected": false
+    },
+    {
+      "model": "Gradient Boosting",
+      "test": {
+        "accuracy": 0.9216792590787228,
+        "precision": 0.9189732413125076,
+        "recall": 0.9249086034608823,
+        "f1": 0.921931369571819,
+        "roc_auc": 0.9792353003268446
+      },
+      "train": {
+        "accuracy": 0.92908,
+        "precision": 0.9261410788381743,
+        "recall": 0.9332218372954246,
+        "f1": 0.9296679757229561,
+        "roc_auc": 0.9825674534461007
+      },
+      "fit_seconds": 4.87,
+      "selected": false
+    },
+    {
+      "model": "XGBoost",
+      "test": {
+        "accuracy": 0.9223495003655862,
+        "precision": 0.918918918918919,
+        "recall": 0.92644406531806,
+        "f1": 0.9226661488421768,
+        "roc_auc": 0.9797256066357108
+      },
+      "train": {
+        "accuracy": 0.93216,
+        "precision": 0.9273936484199756,
+        "recall": 0.9383984390554693,
+        "f1": 0.9328635895811891,
+        "roc_auc": 0.983844921145277
+      },
+      "fit_seconds": 6.6,
+      "selected": true
+    }
+  ],
+  "cross_validation": {
+    "metric": "roc_auc",
+    "folds": 3,
+    "scores": [
+      0.980788412403938,
+      0.9795833685766577,
+      0.9794256565446893
+    ],
+    "mean": 0.979932479175095,
+    "std": 0.0006086512632781326
+  },
+  "dataset": {
+    "name": "Dota 2 Matches (YASP/OpenDota sample of 50,000 ranked matches)",
+    "url": "https://www.kaggle.com/datasets/devinanzelmo/dota-2-matches",
+    "unit_of_analysis": "One player in one ranked All-Pick match",
+    "raw_rows": 500000,
+    "clean_rows": 410270,
+    "train_rows": 300000,
+    "test_rows": 82060,
+    "n_groups": 41027,
+    "group_column": "match_id",
+    "n_input_fields": 12,
+    "n_model_features": 12,
+    "cleaning_log": [
+      {
+        "step": "players.csv rows (player \u00d7 match)",
+        "rows_before": 500000,
+        "rows_after": 500000,
+        "removed": 0
+      },
+      {
+        "step": "Keep Ranked All Pick (game_mode 22); drop Captains Mode",
+        "rows_before": 500000,
+        "rows_after": 486700,
+        "removed": 13300
+      },
+      {
+        "step": "Drop matches where any player abandoned (leaver_status \u2260 0)",
+        "rows_before": 486700,
+        "rows_after": 410470,
+        "removed": 76230
+      },
+      {
+        "step": "Keep matches lasting 15\u201390 minutes",
+        "rows_before": 410470,
+        "rows_after": 410270,
+        "removed": 200
+      },
+      {
+        "step": "Remove impossible values (level outside 1\u201325, zero GPM/XPM, negatives)",
+        "rows_before": 410270,
+        "rows_after": 410270,
+        "removed": 0
+      },
+      {
+        "step": "Keep complete 10-player matches",
+        "rows_before": 410270,
+        "rows_after": 410270,
+        "removed": 0
+      }
+    ],
+    "target_summary": {
+      "count": 410270.0,
+      "mean": 0.5,
+      "std": 0.500000609355929,
+      "min": 0.0,
+      "25%": 0.0,
+      "50%": 0.5,
+      "75%": 1.0,
+      "max": 1.0
+    }
+  },
+  "trained_at": "2026-11-16T09:02:01+00:00",
+  "training_seconds": 32.4
+}

@@ -1,0 +1,175 @@
+{
+  "game": "pubg",
+  "name": "PUBG",
+  "task": "regression",
+  "target_name": "Placement Percentile",
+  "selected_model": "Gradient Boosting",
+  "selection_metric": "rmse",
+  "models": [
+    {
+      "model": "Linear Regression",
+      "test": {
+        "r2": 0.7628734318036645,
+        "mae": 0.11346078106699756,
+        "mse": 0.022411455828522584,
+        "rmse": 0.14970456181600675
+      },
+      "train": {
+        "r2": 0.7594550113478512,
+        "mae": 0.11448404982023148,
+        "mse": 0.022657155767304975,
+        "rmse": 0.15052294100005148
+      },
+      "fit_seconds": 0.17,
+      "selected": false
+    },
+    {
+      "model": "Decision Tree",
+      "test": {
+        "r2": 0.8208141304456423,
+        "mae": 0.09372920778891837,
+        "mse": 0.01693532796075339,
+        "rmse": 0.13013580583664663
+      },
+      "train": {
+        "r2": 0.8324458318222137,
+        "mae": 0.09072058363434676,
+        "mse": 0.015782082633012718,
+        "rmse": 0.12562675922355362
+      },
+      "fit_seconds": 1.41,
+      "selected": false
+    },
+    {
+      "model": "Random Forest",
+      "test": {
+        "r2": 0.8298348760143001,
+        "mae": 0.09073761873857228,
+        "mse": 0.016082753563923583,
+        "rmse": 0.12681779671609023
+      },
+      "train": {
+        "r2": 0.8615494238726908,
+        "mae": 0.08128779558440793,
+        "mse": 0.013040788282335875,
+        "rmse": 0.11419627087753731
+      },
+      "fit_seconds": 15.1,
+      "selected": false
+    },
+    {
+      "model": "Gradient Boosting",
+      "test": {
+        "r2": 0.8331400631614676,
+        "mae": 0.08965646238342737,
+        "mse": 0.01577037163086067,
+        "rmse": 0.12558014027249959
+      },
+      "train": {
+        "r2": 0.8318298936359264,
+        "mae": 0.09036859617941038,
+        "mse": 0.01584009842252444,
+        "rmse": 0.1258574527889566
+      },
+      "fit_seconds": 3.77,
+      "selected": true
+    },
+    {
+      "model": "XGBoost",
+      "test": {
+        "r2": 0.8329737980123892,
+        "mae": 0.08959696402576785,
+        "mse": 0.015786085787535455,
+        "rmse": 0.12564269094354616
+      },
+      "train": {
+        "r2": 0.8426483334128887,
+        "mae": 0.08730589160629741,
+        "mse": 0.014821099537703348,
+        "rmse": 0.12174193828629207
+      },
+      "fit_seconds": 8.15,
+      "selected": false
+    }
+  ],
+  "cross_validation": {
+    "metric": "r2",
+    "folds": 3,
+    "scores": [
+      0.8307625935188304,
+      0.8281824255000264,
+      0.8287256850212696
+    ],
+    "mean": 0.8292235680133754,
+    "std": 0.001110625156292903
+  },
+  "dataset": {
+    "name": "PUBG Finish Placement Prediction (Kaggle competition)",
+    "url": "https://www.kaggle.com/competitions/pubg-finish-placement-prediction/data",
+    "unit_of_analysis": "One player in one match",
+    "raw_rows": 4446966,
+    "clean_rows": 1402311,
+    "train_rows": 300000,
+    "test_rows": 100000,
+    "n_groups": 15000,
+    "group_column": "matchId",
+    "n_input_fields": 16,
+    "n_model_features": 19,
+    "cleaning_log": [
+      {
+        "step": "train_V2.csv rows (player \u00d7 match)",
+        "rows_before": 4446966,
+        "rows_after": 4446966,
+        "removed": 0
+      },
+      {
+        "step": "Drop rows with missing target",
+        "rows_before": 4446966,
+        "rows_after": 4446965,
+        "removed": 1
+      },
+      {
+        "step": "Keep standard solo/duo/squad modes (drop custom: crash, flare, normal-*)",
+        "rows_before": 4446965,
+        "rows_after": 4411698,
+        "removed": 35267
+      },
+      {
+        "step": "Random sample of 15,000 whole matches (laptop-friendly)",
+        "rows_before": 4411698,
+        "rows_after": 1402415,
+        "removed": 3009283
+      },
+      {
+        "step": "Drop matches with maxPlace \u2264 1 (placement undefined)",
+        "rows_before": 1402415,
+        "rows_after": 1402415,
+        "removed": 0
+      },
+      {
+        "step": "Remove suspected cheaters: kills without moving",
+        "rows_before": 1402415,
+        "rows_after": 1402353,
+        "removed": 62
+      },
+      {
+        "step": "Remove extreme outliers (kills>30, longest kill>1km, >80 weapons, >40 heals)",
+        "rows_before": 1402353,
+        "rows_after": 1402311,
+        "removed": 42
+      }
+    ],
+    "target_summary": {
+      "count": 1402311.0,
+      "mean": 0.4726451800634809,
+      "std": 0.30741814207339824,
+      "min": 0.0,
+      "25%": 0.2,
+      "50%": 0.4583,
+      "75%": 0.7407,
+      "max": 1.0
+    }
+  },
+  "trained_at": "2026-11-16T09:01:08+00:00",
+  "training_seconds": 37.5
+}
