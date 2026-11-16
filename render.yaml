@@ -1,0 +1,9 @@
+# Render Blueprint: creates a free web service from this repo's Dockerfile.
+# Render dashboard -> New -> Blueprint -> select this repository.
+services:
+  - type: web
+    name: statline
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true

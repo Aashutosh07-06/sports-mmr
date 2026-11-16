@@ -1,5 +1,7 @@
 # Statline: Gaming & Esports Performance Predictor
 
+> **Live demo:** _add your Render link here after deploying (see `docs/deployment.md`)_
+
 A full-stack machine-learning web application. You pick a game, enter your match statistics and get an
 **explained** prediction of a performance-related target.
 
@@ -162,5 +164,6 @@ Interactive documentation: http://localhost:8000/docs
 - `docs/testing_report.md`: actual test results
 - `docs/user_guide.md`: how to use the application
 - `docs/viva_preparation.md`: explanations, scripts and 30 viva questions
+- `docs/deployment.md`: how to get a public live link (Render / Hugging Face)
 - `docs/ppt_corrections.md`: slide-by-slide fixes for the original presentation
 - `docs/phase1_dataset_suitability_report.md`: initial dataset inspection

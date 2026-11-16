@@ -1,0 +1,13 @@
+# Runtime-only dependencies for the deployed app (Docker / Render / Hugging Face).
+# Versions are PINNED to match the environment that trained ml/artifacts/*/model.joblib:
+# loading a model with a different scikit-learn / XGBoost version can fail or change results.
+fastapi==0.163.1
+uvicorn==0.54.0
+pydantic==2.14.3
+sqlalchemy==2.1.8
+pandas==3.1.1
+numpy==2.5.5
+scikit-learn==1.9.1
+xgboost==3.4.1
+shap==0.54.1
+joblib==1.6.0
