@@ -26,7 +26,7 @@ export default function Button({
   children,
   ...props
 }) {
-  const cls = `inline-flex items-center justify-center rounded-lg font-semibold transition-colors duration-150
+  const cls = `btn-pop inline-flex items-center justify-center rounded-lg font-semibold transition-colors duration-150
     disabled:opacity-50 disabled:cursor-not-allowed select-none whitespace-nowrap ${VARIANTS[variant]} ${SIZES[size]} ${className}`
   const content = (
     <>

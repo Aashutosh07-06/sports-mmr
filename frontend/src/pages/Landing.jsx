@@ -87,10 +87,11 @@ export default function Landing() {
               <Reveal key={key} delay={i * 0.05}>
                 <Link
                   to={`/predict/${key}`}
-                  className="group flex h-full flex-col rounded-2xl border border-line-soft bg-card p-5 transition-colors hover:border-line hover:bg-card-2"
+                  className="hover-pop spotlight group flex h-full flex-col rounded-2xl border border-line-soft bg-card p-5"
+                  style={{ '--pop': meta.accent }}
                 >
                   <div className="flex items-center justify-between">
-                    <GameMark game={key} />
+                    <GameMark game={key} className="pop-icon" />
                     <ArrowRight className="size-4 text-faint transition-transform group-hover:translate-x-0.5 group-hover:text-ink-2" aria-hidden />
                   </div>
                   <h3 className="mt-4 text-lg font-bold text-ink">{meta.title}</h3>
@@ -122,7 +123,7 @@ export default function Landing() {
               [ChartColumn, 'See why', 'SHAP values show how much each stat pushed the prediction up or down, and how it compares with the dataset.'],
             ].map(([Icon, title, text], i) => (
               <Reveal key={title} delay={i * 0.05}>
-                <li className="relative h-full rounded-2xl border border-line-soft bg-card p-5">
+                <li className="hover-pop spotlight relative h-full rounded-2xl border border-line-soft bg-card p-5">
                   <span className="num absolute right-5 top-5 text-xs text-faint">0{i + 1}</span>
                   <Icon className="size-5 text-violet-hi" aria-hidden />
                   <h3 className="mt-4 font-bold text-ink">{title}</h3>
@@ -185,7 +186,7 @@ export default function Landing() {
                     </thead>
                     <tbody>
                       {sortGames(info.data).map((g) => (
-                        <tr key={g.key} className="border-t border-line-soft">
+                        <tr key={g.key} className="hover-row border-t border-line-soft" style={{ '--pop': metaFor(g.key).accent }}>
                           <td className="px-5 py-3.5">
                             <span className="flex items-center gap-3">
                               <GameMark game={g.key} size="sm" />
@@ -236,7 +237,7 @@ export default function Landing() {
               [ShieldCheck, 'Storage & tests', 'SQLite · SQLAlchemy · Pytest · Vitest', 'Prediction history stored without personal data; automated test suites.'],
             ].map(([Icon, title, stack, text], i) => (
               <Reveal key={title} delay={i * 0.04}>
-                <div className="h-full rounded-2xl border border-line-soft bg-card p-5">
+                <div className="hover-pop spotlight h-full rounded-2xl border border-line-soft bg-card p-5">
                   <Icon className="size-5 text-cyan" aria-hidden />
                   <h3 className="mt-3 font-bold text-ink">{title}</h3>
                   <p className="num mt-1 text-xs text-violet-hi">{stack}</p>
@@ -274,7 +275,11 @@ function ModelBoard({ state }) {
       ) : (
         <ul>
           {sortGames(data).map((g) => (
-            <li key={g.key} className="flex items-center gap-4 border-b border-line-soft px-5 py-4 last:border-0">
+            <li
+              key={g.key}
+              className="hover-row flex items-center gap-4 border-b border-line-soft px-5 py-4 last:border-0"
+              style={{ '--pop': metaFor(g.key).accent }}
+            >
               <GameMark game={g.key} />
               <div className="min-w-0 flex-1">
                 <p className="font-bold text-ink">{g.name}</p>

@@ -147,7 +147,7 @@ export default function Results() {
               {Object.entries(result.inputs).map(([k, v]) => {
                 const f = fields.find((x) => x.name === k)
                 return (
-                  <div key={k} className="flex items-center justify-between gap-4 py-2 text-sm">
+                  <div key={k} className="hover-row -mx-2 flex items-center justify-between gap-4 rounded-md px-2 py-2 text-sm">
                     <dt className="text-muted">{f?.label || k}</dt>
                     <dd className={`num font-medium text-ink ${f?.dtype === 'category' ? 'capitalize' : ''}`}>{fmtInput(f, v)}</dd>
                   </div>

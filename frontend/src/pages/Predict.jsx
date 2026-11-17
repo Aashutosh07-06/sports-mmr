@@ -86,7 +86,7 @@ function ModelPanel({ info }) {
   const keys = schema.task === 'regression' ? ['r2', 'mae', 'rmse'] : ['roc_auc', 'accuracy', 'f1']
   return (
     <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start" aria-label="About this model">
-      <Card className="p-5">
+      <Card className="hover-pop spotlight p-5">
         <p className="eyebrow">You are predicting</p>
         <p className="mt-1 text-xl font-extrabold" style={{ color: metaFor(schema.game).accent }}>
           {schema.target_name}
@@ -97,7 +97,7 @@ function ModelPanel({ info }) {
           {schema.not_mmr_note}
         </div>
       </Card>
-      <Card className="p-5">
+      <Card className="hover-pop spotlight p-5">
         <p className="eyebrow">Model</p>
         <p className="mt-1 font-bold text-ink">{schema.model_name}</p>
         <p className="text-xs text-muted">

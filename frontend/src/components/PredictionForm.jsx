@@ -155,7 +155,7 @@ function Field({ field, value, onChange, onBlur, error }) {
               role="radio"
               aria-checked={opt === value}
               onClick={() => onChange(opt)}
-              className={`rounded-lg px-4 py-1.5 text-sm font-semibold capitalize transition-colors ${
+              className={`hover-chip rounded-lg px-4 py-1.5 text-sm font-semibold capitalize ${
                 opt === value ? 'bg-violet text-white' : 'text-muted hover:bg-card-2 hover:text-ink'
               }`}
             >
@@ -176,8 +176,8 @@ function Field({ field, value, onChange, onBlur, error }) {
         <InfoTip text={field.description} label={`About ${field.label}`} />
       </div>
       <div
-        className={`flex h-11 items-center rounded-xl border bg-bg-2 transition-colors focus-within:border-violet ${
-          error ? 'border-bad/70' : 'border-line hover:border-faint/60'
+        className={`flex h-11 items-center rounded-xl border bg-bg-2 ${
+          error ? 'border-bad/70' : 'field-glow border-line'
         }`}
       >
         <input

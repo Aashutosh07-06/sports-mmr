@@ -48,7 +48,8 @@ export default function Analytics() {
                 aria-selected={active}
                 aria-controls="game-panel"
                 onClick={() => setParams({ game: g })}
-                className={`inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold transition-colors ${
+                style={{ '--pop': metaFor(g).accent }}
+                className={`hover-chip inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold ${
                   active ? 'border-line bg-card-2 text-ink' : 'border-transparent text-muted hover:text-ink'
                 }`}
               >
@@ -91,7 +92,7 @@ function Overview({ state }) {
             </thead>
             <tbody>
               {rows.map((g) => (
-                <tr key={g.key} className="border-b border-line-soft last:border-0">
+                <tr key={g.key} className="hover-row border-b border-line-soft last:border-0" style={{ '--pop': metaFor(g.key).accent }}>
                   <td className="py-3 pr-3 font-semibold text-ink">{g.name}</td>
                   <td className="px-3 text-ink-2">{g.target_name}</td>
                   <td className="px-3 text-muted">{g.task}</td>
@@ -261,7 +262,7 @@ function ModelComparison({ models, task }) {
                 type="button"
                 aria-pressed={metric === k}
                 onClick={() => setMetric(k)}
-                className={`rounded-md px-2 py-1 text-xs font-semibold ${metric === k ? 'bg-card-2 text-ink' : 'text-muted hover:text-ink-2'}`}
+                className={`hover-chip rounded-md px-2 py-1 text-xs font-semibold ${metric === k ? 'bg-card-2 text-ink' : 'text-muted hover:text-ink-2'}`}
               >
                 {METRIC_LABELS[k]}
               </button>
@@ -293,7 +294,7 @@ function ModelComparison({ models, task }) {
               </thead>
               <tbody>
                 {models.map((m) => (
-                  <tr key={m.model} className={`border-b border-line-soft last:border-0 ${m.selected ? 'bg-violet/8' : ''}`}>
+                  <tr key={m.model} className={`hover-row border-b border-line-soft last:border-0 ${m.selected ? 'bg-violet/8' : ''}`}>
                     <td className="py-2.5 pr-2 font-semibold text-ink">
                       {m.model} {m.selected && <Badge tone="violet" className="ml-1">selected</Badge>}
                     </td>

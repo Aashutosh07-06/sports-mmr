@@ -93,9 +93,9 @@ export default function Methodology() {
               <div className="grid gap-4 md:grid-cols-2">
                 {all.data.map((info, i) =>
                   info ? (
-                    <Card key={info.schema.game} className="p-5">
+                    <Card key={info.schema.game} className="hover-pop spotlight p-5" style={{ '--pop': metaFor(info.schema.game).accent }}>
                       <div className="flex items-center gap-3">
-                        <GameMark game={info.schema.game} size="sm" />
+                        <GameMark game={info.schema.game} size="sm" className="pop-icon" />
                         <p className="font-bold text-ink">{info.schema.name}</p>
                         <Badge tone="violet" className="ml-auto">{info.schema.target_name}</Badge>
                       </div>
@@ -179,7 +179,7 @@ export default function Methodology() {
                 ['XGBoost', 'Regularised gradient boosting with row and column subsampling. Often the strongest model on tabular data.'],
                 ['SHAP', 'Game-theory method (Shapley values) that splits each prediction into exact per-feature contributions.'],
               ].map(([t, d]) => (
-                <Card key={t} className="p-4">
+                <Card key={t} className="hover-pop spotlight p-4">
                   <p className="font-bold text-ink">{t}</p>
                   <p className="mt-1 text-sm text-muted">{d}</p>
                 </Card>
@@ -336,7 +336,7 @@ function RankedExperiment({ e }) {
       <CardBody>
         <div className="grid gap-3 sm:grid-cols-3">
           {Object.entries(e.results).map(([name, r]) => (
-            <div key={name} className="rounded-xl border border-line-soft bg-bg-2 p-4">
+            <div key={name} className="hover-pop spotlight rounded-xl border border-line-soft bg-bg-2 p-4">
               <p className="text-sm font-semibold text-ink">{name}</p>
               <p className="num mt-2 text-2xl font-semibold text-ink">{fmtPct(r.accuracy)}</p>
               <p className="text-xs text-muted">accuracy · macro-F1 {fmt(r.macro_f1, 2)}</p>

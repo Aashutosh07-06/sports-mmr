@@ -29,7 +29,7 @@ export default function ChartCard({ title, description, eyebrow, table, children
     </div>
   )
   return (
-    <Card className={className}>
+    <Card className={`card-glow ${className}`}>
       <CardHeader eyebrow={eyebrow} title={title} description={description} action={toggle} />
       <CardBody>
         {legend && view === 'chart' && <div className="mb-3 flex flex-wrap gap-4 text-xs text-ink-2">{legend}</div>}

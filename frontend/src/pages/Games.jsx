@@ -32,12 +32,13 @@ export default function Games() {
           return (
             <Reveal key={g.key} delay={i * 0.05}>
               <article
-                className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line-soft bg-card p-6"
+                className="hover-pop spotlight relative flex h-full flex-col overflow-hidden rounded-2xl border border-line-soft bg-card p-6"
+                style={{ '--pop': meta.accent }}
                 aria-labelledby={`game-${g.key}`}
               >
                 <span className="absolute inset-x-0 top-0 h-0.5" style={{ background: meta.accent }} aria-hidden />
                 <div className="flex items-start gap-4">
-                  <GameMark game={g.key} size="lg" />
+                  <GameMark game={g.key} size="lg" className="pop-icon" />
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <h2 id={`game-${g.key}`} className="text-xl font-extrabold text-ink">

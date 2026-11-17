@@ -47,7 +47,8 @@ export default function History() {
             type="button"
             aria-pressed={game === g}
             onClick={() => setGame(g)}
-            className={`rounded-lg border px-3 py-1.5 text-sm font-semibold ${
+            style={g ? { '--pop': metaFor(g).accent } : undefined}
+            className={`hover-chip rounded-lg border px-3 py-1.5 text-sm font-semibold ${
               game === g ? 'border-line bg-card-2 text-ink' : 'border-transparent text-muted hover:text-ink'
             }`}
           >
@@ -84,7 +85,8 @@ export default function History() {
                   {data.map((r) => (
                     <tr
                       key={r.id}
-                      className="cursor-pointer border-t border-line-soft hover:bg-card-2/60"
+                      className="hover-row cursor-pointer border-t border-line-soft"
+                      style={{ '--pop': metaFor(r.game).accent }}
                       onClick={() => navigate(`/results/${r.id}`)}
                     >
                       <td className="px-5 py-3">
