@@ -2,11 +2,8 @@ import { useState } from 'react'
 import { ChartColumn, Table2 } from 'lucide-react'
 import { Card, CardBody, CardHeader } from '../ui/Card'
 
-/**
- * Card wrapper for every chart. Provides a "Table" toggle so the exact numbers behind
- * each chart are always available (accessibility + viva: "show me the data").
- */
-export default function ChartCard({ title, description, eyebrow, table, children, className = '', height = 280, legend, footer }) {
+// chart card with a chart/table toggle
+export default function ChartCard({ title, description, table, children, className = '', height = 280, legend, footer }) {
   const [view, setView] = useState('chart')
   const toggle = table && (
     <div className="inline-flex rounded-lg border border-line p-0.5" role="group" aria-label={`${title} view`}>
@@ -30,7 +27,7 @@ export default function ChartCard({ title, description, eyebrow, table, children
   )
   return (
     <Card className={`card-glow ${className}`}>
-      <CardHeader eyebrow={eyebrow} title={title} description={description} action={toggle} />
+      <CardHeader title={title} description={description} action={toggle} />
       <CardBody>
         {legend && view === 'chart' && <div className="mb-3 flex flex-wrap gap-4 text-xs text-ink-2">{legend}</div>}
         {view === 'chart' ? (
@@ -63,7 +60,7 @@ export function DataTable({ columns, rows, maxHeight = 320 }) {
   return (
     <div className="overflow-auto rounded-lg border border-line-soft" style={{ maxHeight }}>
       <table className="w-full text-left text-sm">
-        <thead className="sticky top-0 bg-card-2 text-xs uppercase tracking-wider text-muted">
+        <thead className="sticky top-0 bg-card-2 text-xs text-muted">
           <tr>
             {columns.map((c) => (
               <th key={c.key} scope="col" className={`px-3 py-2 font-semibold ${c.align === 'right' ? 'text-right' : ''}`}>

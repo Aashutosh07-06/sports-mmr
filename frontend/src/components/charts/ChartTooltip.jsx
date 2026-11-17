@@ -1,4 +1,4 @@
-/** Dark tooltip used by all Recharts charts. `rows` = [{label, value, color}] */
+// rows: [{ label, value, color }]
 export function TooltipBox({ title, rows }) {
   return (
     <div className="rounded-lg border border-line bg-bg-2/95 px-3 py-2 text-xs shadow-xl backdrop-blur">

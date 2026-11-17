@@ -7,8 +7,7 @@ import '@fontsource-variable/jetbrains-mono'
 import './styles/index.css'
 import App from './App'
 
-// Cursor spotlight: one passive listener writes the pointer position into the hovered
-// .spotlight element as CSS variables (--mx / --my); the glow itself is pure CSS.
+// track the mouse for the .spotlight hover glow
 document.addEventListener(
   'pointermove',
   (e) => {

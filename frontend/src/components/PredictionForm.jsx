@@ -4,7 +4,7 @@ import Button from './ui/Button'
 import InfoTip from './ui/InfoTip'
 import { fmt } from '../utils/format'
 
-/** Client-side validation mirroring the API rules (the server re-validates everything). */
+// same rules as the API (the server checks again anyway)
 export function validateField(field, raw) {
   if (field.dtype === 'category') {
     return field.options.includes(raw) ? null : 'Choose an option'
@@ -25,10 +25,7 @@ const isOutsideTypical = (field, raw) =>
 const emptyValues = (inputs) =>
   Object.fromEntries(inputs.map((f) => [f.name, f.dtype === 'category' ? f.default : '']))
 
-/**
- * Form generated from the trained model's schema (GET /api/model-info/{game}).
- * Fields, groups, tooltips, ranges and categories all come from that game's schema.
- */
+// fields are built from the game's schema returned by /api/model-info/{game}
 export default function PredictionForm({ schema, onSubmit, submitting, serverErrors }) {
   const [values, setValues] = useState(() => emptyValues(schema.inputs))
   const [touched, setTouched] = useState({})
@@ -81,7 +78,7 @@ export default function PredictionForm({ schema, onSubmit, submitting, serverErr
         <Button type="button" variant="ghost" size="sm" icon={Eraser} onClick={clear}>
           Clear
         </Button>
-        <span className="text-xs text-muted">Medians = the typical value of each stat in the training data.</span>
+        <span className="text-xs text-muted">Fills each field with its median from the training data.</span>
       </div>
 
       {serverErrors?.general?.length > 0 && (
@@ -100,7 +97,7 @@ export default function PredictionForm({ schema, onSubmit, submitting, serverErr
       <div className="space-y-8">
         {groups.map((g) => (
           <fieldset key={g.name}>
-            <legend className="eyebrow mb-3">{g.name}</legend>
+            <legend className="label-sm mb-3">{g.name}</legend>
             <div className="grid gap-4 sm:grid-cols-2">
               {g.fields.map((f) => (
                 <Field

@@ -6,7 +6,7 @@ import Games from './pages/Games'
 import Predict from './pages/Predict'
 import NotFound from './pages/NotFound'
 
-// Chart-heavy pages are code-split so the landing page loads fast (Suspense lives in AppLayout).
+// lazy-load the heavier pages (charts)
 const Results = lazy(() => import('./pages/Results'))
 const Analytics = lazy(() => import('./pages/Analytics'))
 const History = lazy(() => import('./pages/History'))

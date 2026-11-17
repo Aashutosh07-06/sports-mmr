@@ -4,10 +4,7 @@ import { TooltipBox } from './ChartTooltip'
 import { C, axisProps } from './theme'
 import { fmt } from '../../utils/format'
 
-/**
- * Diverging bar chart of per-feature contributions (SHAP values) for ONE prediction.
- * Cyan pushes the prediction up, red pushes it down.
- */
+// SHAP contributions for one prediction (cyan = up, red = down)
 export default function ContributionChart({ explanation, top = 10, isClassification }) {
   const items = explanation.contributions.slice(0, top)
   const rest = explanation.contributions.slice(top)
@@ -26,7 +23,6 @@ export default function ContributionChart({ explanation, top = 10, isClassificat
 
   return (
     <ChartCard
-      eyebrow="Explainability"
       title="What drove this prediction"
       description={`${explanation.method}. Bars show how much each stat moved the result away from the average (${unit}).`}
       height={height}

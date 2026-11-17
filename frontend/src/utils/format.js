@@ -42,7 +42,6 @@ export function fmtMetric(key, value) {
   return fmt(value, 3)
 }
 
-/** Display a prediction in the right unit for its task. */
 export function fmtPrediction(task, value) {
   if (task === 'classification') return fmtPct(value)
   return fmt(value, 2)

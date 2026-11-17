@@ -51,7 +51,7 @@ def main(quick: bool) -> int:
 
         # ---- static pages
         for path, name, wait_for in [
-            ("/", "01_landing", "text=Model board"),
+            ("/", "01_landing", "text=Trained models"),
             ("/games", "02_games", "text=Select game"),
             ("/analytics?game=csgo", "06_analytics_csgo", "text=Cleaning log"),
             ("/analytics?game=dota2", "07_analytics_dota2", "text=Confusion matrix"),
@@ -113,7 +113,7 @@ def main(quick: bool) -> int:
         if not quick:
             m = browser.new_context(viewport={"width": 390, "height": 844}, device_scale_factor=2, is_mobile=True)
             mp = m.new_page()
-            for path, name, wait_for in [("/", "m01_landing", "text=Model board"),
+            for path, name, wait_for in [("/", "m01_landing", "text=Trained models"),
                                          ("/predict/pubg", "m02_predict_pubg", "text=Fill with dataset medians"),
                                          ("/analytics?game=pubg", "m03_analytics_pubg", "text=Cleaning log")]:
                 mp.goto(BASE + path)

@@ -1,8 +1,4 @@
-/**
- * Chart colours. Validated with the dataviz palette checker against the card surface #151E30:
- *   series #8B5CF6 / #0EA5C4  -> CVD ΔE 14.4, normal-vision ΔE 22.8, both ≥ 3:1 contrast
- *   pos/neg #0EA5C4 / #E5484D -> CVD ΔE 17.2, normal-vision ΔE 31.1, both ≥ 3:1 contrast
- */
+// chart colours (checked for colour-blind contrast on the #151E30 card background)
 export const C = {
   series1: '#8B5CF6',
   series2: '#0EA5C4',

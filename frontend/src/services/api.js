@@ -1,23 +1,16 @@
-/**
- * Thin API client for the FastAPI backend. Every number the UI shows comes through here.
- */
 import axios from 'axios'
 
-// Dev server (npm run dev, port 5173) talks to the API on port 8000.
-// The production build is served BY the API itself (start.bat), so a relative path works.
+// in dev (vite, port 5173) the API is on :8000; the built site is served by the API itself (run.bat)
 export const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:8000/api' : '/api')
 
 const http = axios.create({ baseURL: API_BASE, timeout: 30000 })
 
-/**
- * Normalise any axios error into { message, status, fieldErrors, generalErrors }.
- * fieldErrors: { inputName: message } for inline form errors (422 responses).
- */
+// turn an axios error into something the UI can show (fieldErrors come from 422 responses)
 export function normalizeError(err) {
   if (!err?.response) {
     return {
       status: 0,
-      message: `Cannot reach the prediction server at ${API_BASE}. Make sure the backend is running (see README → "Run the backend").`,
+      message: `Cannot reach the prediction server at ${API_BASE}. Start the app with run.bat and try again.`,
       fieldErrors: {},
       generalErrors: [],
     }

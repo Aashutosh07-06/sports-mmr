@@ -1,6 +1,3 @@
-/**
- * Dashboard charts. Every component receives data straight from GET /api/analytics/{game}.
- */
 import {
   Bar,
   BarChart,
@@ -24,12 +21,11 @@ import { fmt, fmtInt, fmtMetric, fmtPct, METRIC_LABELS } from '../../utils/forma
 
 const tooltip = (render) => ({ active, payload }) => (active && payload?.length ? render(payload[0].payload, payload) : null)
 
-// ------------------------------------------------------------------ feature importance (SHAP)
+// feature importance (SHAP)
 export function ImportanceChart({ items, labels, top = 12 }) {
   const data = items.slice(0, top).map((d) => ({ ...d, name: labels[d.feature] || d.feature, pct: d.share * 100 }))
   return (
     <ChartCard
-      eyebrow="Explainability"
       title="Feature importance (SHAP)"
       description="Mean absolute SHAP value on held-out test rows, as a share of the total. Higher = the model relies on it more."
       height={Math.max(240, data.length * 28 + 30)}
@@ -60,7 +56,7 @@ export function ImportanceChart({ items, labels, top = 12 }) {
   )
 }
 
-// ------------------------------------------------------------------ model comparison
+// model comparison
 export function ModelComparisonChart({ models, metric }) {
   const data = models.map((m) => ({ name: m.model, value: m.test[metric], selected: m.selected }))
   const min = Math.min(0, ...data.map((d) => d.value))
@@ -94,14 +90,13 @@ export function ModelComparisonChart({ models, metric }) {
   )
 }
 
-// ------------------------------------------------------------------ regression diagnostics
+// regression diagnostics
 export function ActualVsPredictedChart({ points, targetName }) {
   const vals = points.flatMap((p) => [p.actual, p.predicted])
   const lo = Math.min(...vals)
   const hi = Math.max(...vals)
   return (
     <ChartCard
-      eyebrow="Regression diagnostics"
       title="Actual vs predicted"
       description={`${fmtInt(points.length)} random held-out test rows. Points on the diagonal are perfect predictions.`}
       height={300}
@@ -139,11 +134,10 @@ export function ActualVsPredictedChart({ points, targetName }) {
   )
 }
 
-export function HistogramChart({ bins, title, description, xLabel, eyebrow }) {
+export function HistogramChart({ bins, title, description, xLabel }) {
   const data = bins.map((b) => ({ ...b, mid: (b.start + b.end) / 2 }))
   return (
     <ChartCard
-      eyebrow={eyebrow}
       title={title}
       description={description}
       height={260}
@@ -181,7 +175,6 @@ export function DistributionCompareChart({ bins, labels, title, description, xFo
   const data = bins.map((b) => ({ ...b, mid: (b.start + b.end) / 2 }))
   return (
     <ChartCard
-      eyebrow="Distribution"
       title={title}
       description={description}
       height={260}
@@ -229,7 +222,6 @@ export function DistributionCompareChart({ bins, labels, title, description, xFo
 export function ErrorByDecileChart({ rows, targetName }) {
   return (
     <ChartCard
-      eyebrow="Where is the model weakest?"
       title="Mean absolute error by target range"
       description={`Test rows split into 10 equal-size groups by their actual ${targetName}.`}
       height={260}
@@ -257,11 +249,10 @@ export function ErrorByDecileChart({ rows, targetName }) {
   )
 }
 
-// ------------------------------------------------------------------ classification diagnostics
+// classification diagnostics
 export function RocChart({ points, auc }) {
   return (
     <ChartCard
-      eyebrow="Classification diagnostics"
       title={`ROC curve (AUC ${fmt(auc, 3)})`}
       description="Trade-off between catching wins (true positive rate) and false alarms at every threshold. The diagonal is random guessing."
       height={300}
@@ -297,7 +288,6 @@ export function RocChart({ points, auc }) {
 export function CalibrationChart({ rows }) {
   return (
     <ChartCard
-      eyebrow="Reliability"
       title="Calibration"
       description="When the model says 70%, do ~70% of those players actually win? Points near the diagonal = well calibrated."
       height={300}

@@ -30,8 +30,8 @@ export default function History() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
-        <SectionHeading as="h1" eyebrow="History" title="Saved predictions">
-          Every prediction is saved in the local SQLite database with its inputs and result. No personal data is stored.
+        <SectionHeading as="h1" title="Saved predictions">
+          Your previous predictions, newest first. Click one to open it again.
         </SectionHeading>
         {data?.length > 0 && (
           <Button variant="danger" size="sm" icon={Trash2} onClick={clear}>
@@ -71,7 +71,7 @@ export default function History() {
           <Card className="overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[640px] text-left text-sm">
-                <thead className="bg-card-2 text-xs uppercase tracking-wider text-muted">
+                <thead className="bg-card-2 text-xs text-muted">
                   <tr>
                     <th scope="col" className="px-5 py-3 font-semibold">Game</th>
                     <th scope="col" className="px-3 py-3 font-semibold">Target</th>

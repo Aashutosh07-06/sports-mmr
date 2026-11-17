@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
-/* ------------------------------------------------------------------ design tokens
-   One place for the whole design system. Surfaces step up in lightness;
-   text uses three ink levels; violet = action, cyan = data highlight.
-   Chart colours (series/pos/neg) were validated for colour-blind separation
-   and contrast against the card surface (#151E30). */
+/* colours + fonts */
 @theme {
   --color-bg: #0B1020;
   --color-bg-2: #111827;
@@ -64,31 +60,20 @@ body {
   border-radius: 6px;
 }
 
-/* tabular numbers everywhere a number is compared */
+/* monospace digits so numbers line up in tables */
 .num {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
 }
 
-.eyebrow {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.label-sm {
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--color-muted);
 }
 
-/* faint grid used only behind the hero */
-.hero-grid {
-  background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--color-line) 55%, transparent) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, black 30%, transparent 75%);
-}
-
-/* number inputs: hide spinners, we validate ourselves */
+/* hide the number-input spinners */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -98,16 +83,14 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-/* Recharts: keep focus rings off SVG surfaces */
 .recharts-wrapper svg:focus,
 .recharts-surface:focus {
   outline: none;
 }
 
-/* ------------------------------------------------------------------ hover & highlight system
-   One consistent interaction language for the whole app.
-   --pop sets the glow colour per element (e.g. the game's accent); violet by default.
-   Plain (unlayered) CSS so it wins over Tailwind's transition/hover utilities. */
+/* ---- hover effects ----
+   --pop = glow colour (game accent), defaults to violet.
+   Not inside a Tailwind layer, so these override the utility classes. */
 .hover-pop,
 .hover-chip,
 .hover-row,
@@ -122,7 +105,7 @@ input[type="number"] {
     color 180ms ease;
 }
 
-/* Cards: lift toward the cursor with a coloured glow */
+/* cards */
 .hover-pop:hover,
 .hover-pop:focus-visible,
 .hover-pop:focus-within {
@@ -140,7 +123,7 @@ input[type="number"] {
   transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Small choices (mode options, tabs, filters): pop out slightly */
+/* small buttons: mode options, tabs, filters */
 .hover-chip:hover:not([aria-checked="true"]):not([aria-pressed="true"]):not([aria-selected="true"]) {
   transform: translateY(-2px) scale(1.05);
   background-color: color-mix(in oklab, var(--pop, var(--color-violet)) 16%, transparent);
@@ -151,7 +134,7 @@ input[type="number"] {
   transform: scale(0.97);
 }
 
-/* Table / list rows: highlight in place with a gentle nudge */
+/* table rows */
 .hover-row:hover {
   background-color: color-mix(in oklab, var(--color-violet) 9%, transparent);
 }
@@ -159,7 +142,7 @@ input[type="number"] {
   box-shadow: inset 3px 0 0 0 var(--pop, var(--color-violet));
 }
 
-/* Input boxes: glow on hover, stronger glow while typing */
+/* inputs */
 .field-glow:hover {
   border-color: color-mix(in oklab, var(--color-violet) 55%, var(--color-line));
   box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-violet) 10%, transparent);
@@ -169,13 +152,13 @@ input[type="number"] {
   box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-violet) 22%, transparent);
 }
 
-/* Large panels (charts): highlight the border, no movement */
+/* chart cards: border only */
 .card-glow:hover {
   border-color: color-mix(in oklab, var(--color-violet) 40%, var(--color-line));
   box-shadow: 0 14px 40px -24px color-mix(in oklab, var(--color-violet) 55%, transparent);
 }
 
-/* Buttons: small lift + brighter glow */
+/* buttons */
 .btn-pop:hover:not(:disabled) {
   transform: translateY(-2px);
 }
@@ -183,8 +166,7 @@ input[type="number"] {
   transform: translateY(0) scale(0.98);
 }
 
-/* Cursor spotlight: a soft light that follows the pointer inside the element.
-   The pointer position is written to --mx/--my by a single listener in main.jsx. */
+/* glow that follows the mouse (--mx/--my are set in main.jsx) */
 .spotlight {
   position: relative;
   isolation: isolate;
@@ -212,7 +194,6 @@ input[type="number"] {
   html {
     scroll-behavior: auto;
   }
-  /* keep the highlight, drop the movement */
   .hover-pop:hover,
   .hover-pop:focus-visible,
   .hover-pop:focus-within,

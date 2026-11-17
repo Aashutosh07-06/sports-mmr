@@ -53,7 +53,6 @@ export default function Results() {
       <div className="mt-6 flex flex-wrap items-center gap-4">
         <GameMark game={result.game} size="lg" />
         <div>
-          <p className="eyebrow">Step 3 of 3 · Prediction result</p>
           <h1 className="text-3xl font-extrabold tracking-tight text-ink">
             {result.game_name} · {result.target_name}
           </h1>
@@ -64,7 +63,7 @@ export default function Results() {
       <Card className="mt-8 overflow-hidden">
         <div className="grid lg:grid-cols-[1.1fr_1fr]">
           <div className="border-b border-line-soft p-6 sm:p-8 lg:border-b-0 lg:border-r">
-            <p className="eyebrow">Predicted {result.target_name}</p>
+            <p className="label-sm">Predicted {result.target_name}</p>
             <div className="mt-3 flex flex-wrap items-end gap-4">
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
@@ -113,7 +112,7 @@ export default function Results() {
         <div className="space-y-6">
           <ContributionChart explanation={result.explanation} isClassification={isClf} />
           <Card>
-            <CardHeader eyebrow="Explanation" title="How to read this prediction" />
+            <CardHeader title="How to read this prediction" />
             <CardBody className="space-y-3 text-sm leading-relaxed text-ink-2">
               <p>
                 The model starts from a baseline:{' '}
@@ -141,7 +140,7 @@ export default function Results() {
         </div>
 
         <Card as="aside" aria-label="Input summary">
-          <CardHeader eyebrow="Input summary" title="What you entered" />
+          <CardHeader title="What you entered" />
           <CardBody>
             <dl className="divide-y divide-line-soft">
               {Object.entries(result.inputs).map(([k, v]) => {
@@ -177,12 +176,11 @@ function Page({ children }) {
   return <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">{children}</div>
 }
 
-/** Where the prediction sits within the training distribution of the target. */
 function PercentileScale({ result }) {
   const pct = result.interpretation.percentile ?? 0
   return (
     <div>
-      <p className="eyebrow">Compared with the dataset</p>
+      <p className="label-sm">Compared with the dataset</p>
       <p className="mt-1 text-sm text-ink-2">
         Higher than <span className="num font-semibold text-ink">{fmt(pct, 0)}%</span> of {result.game === 'pubg' ? 'player-matches' : 'professional player-maps'} in the training data
       </p>
@@ -210,7 +208,7 @@ function PercentileScale({ result }) {
 function ProbabilityScale({ value }) {
   return (
     <div>
-      <p className="eyebrow">Win probability</p>
+      <p className="label-sm">Win probability</p>
       <div className="relative mt-5 h-2.5 rounded-full" style={{ background: 'linear-gradient(90deg,#E5484D55,#26324D 50%,#0EA5C477)' }} role="img" aria-label={`Win probability ${Math.round(value * 100)} percent`}>
         <span className="absolute left-1/2 top-[-4px] h-[18px] w-px bg-muted" aria-hidden />
         <motion.span

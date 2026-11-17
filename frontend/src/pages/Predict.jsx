@@ -33,7 +33,7 @@ export default function Predict() {
     }
   }
 
-  // 422 = validation problem: shown inline in the form (per field + general messages)
+  // 422 = bad input, show it inside the form
   const serverErrors =
     submitError?.status === 422 ? { general: submitError.generalErrors, fields: submitError.fieldErrors } : null
 
@@ -46,7 +46,6 @@ export default function Predict() {
       <div className="mt-6 flex items-center gap-4">
         <GameMark game={game} size="lg" />
         <div>
-          <p className="eyebrow">Step 2 of 3 · Enter match statistics</p>
           <h1 className="text-3xl font-extrabold tracking-tight text-ink">{meta.title} prediction</h1>
         </div>
       </div>
@@ -87,7 +86,7 @@ function ModelPanel({ info }) {
   return (
     <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start" aria-label="About this model">
       <Card className="hover-pop spotlight p-5">
-        <p className="eyebrow">You are predicting</p>
+        <p className="label-sm">You are predicting</p>
         <p className="mt-1 text-xl font-extrabold" style={{ color: metaFor(schema.game).accent }}>
           {schema.target_name}
         </p>
@@ -98,7 +97,7 @@ function ModelPanel({ info }) {
         </div>
       </Card>
       <Card className="hover-pop spotlight p-5">
-        <p className="eyebrow">Model</p>
+        <p className="label-sm">Model</p>
         <p className="mt-1 font-bold text-ink">{schema.model_name}</p>
         <p className="text-xs text-muted">
           Selected from {metrics.models.length} algorithms by test {metrics.selection_metric.toUpperCase()}

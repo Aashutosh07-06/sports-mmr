@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { normalizeError } from '../services/api'
 
-/**
- * Run an async API call and track { data, loading, error }. `deps` re-run it; `reload()` retries.
- */
+// fetch helper: returns { data, loading, error, reload }
 export function useApi(fn, deps = []) {
   const [state, setState] = useState({ data: null, loading: true, error: null })
   const [nonce, setNonce] = useState(0)

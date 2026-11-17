@@ -16,9 +16,8 @@ export default function Games() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-      <SectionHeading as="h1" eyebrow="Step 1 of 3" title="Choose a game">
-        Each game has its own form and model, trained on that game’s data. A game only shows as available when
-        its trained model has loaded on the server.
+      <SectionHeading as="h1" title="Choose a game">
+        Each game has its own model and input form.
       </SectionHeading>
 
       {error && <ErrorState error={error} onRetry={reload} className="mt-10" />}
@@ -36,7 +35,6 @@ export default function Games() {
                 style={{ '--pop': meta.accent }}
                 aria-labelledby={`game-${g.key}`}
               >
-                <span className="absolute inset-x-0 top-0 h-0.5" style={{ background: meta.accent }} aria-hidden />
                 <div className="flex items-start gap-4">
                   <GameMark game={g.key} size="lg" className="pop-icon" />
                   <div className="min-w-0 flex-1">
@@ -46,7 +44,7 @@ export default function Games() {
                       </h2>
                       {ready ? <Badge tone="good">Model ready</Badge> : <Badge tone="warn" icon={CircleAlert}>Unavailable</Badge>}
                     </div>
-                    <p className="text-sm text-muted">{meta.subtitle}</p>
+                    {meta.subtitle !== meta.title && <p className="text-sm text-muted">{meta.subtitle}</p>}
                   </div>
                 </div>
 
@@ -54,14 +52,14 @@ export default function Games() {
 
                 <dl className="mt-5 grid grid-cols-2 gap-4 rounded-xl border border-line-soft bg-bg-2/60 p-4 text-sm">
                   <div>
-                    <dt className="eyebrow">Prediction task</dt>
+                    <dt className="label-sm">Prediction task</dt>
                     <dd className="mt-1 font-semibold" style={{ color: meta.accent }}>
                       {g.target_name || '—'}
                     </dd>
                     <dd className="text-xs text-muted">{g.task === 'classification' ? 'Classification' : 'Regression'}</dd>
                   </div>
                   <div>
-                    <dt className="eyebrow">Model · test score</dt>
+                    <dt className="label-sm">Model · test score</dt>
                     <dd className="mt-1 font-semibold text-ink">{g.model_name || '—'}</dd>
                     {g.headline_metric && (
                       <dd className="num text-xs text-muted">
@@ -74,7 +72,7 @@ export default function Games() {
                 <p className="mt-4 text-xs leading-relaxed text-muted">{ready ? meta.scope : g.reason}</p>
 
                 <div className="mt-6 flex items-center justify-between gap-3 pt-1">
-                  <p className="text-xs text-faint">{ready ? 'Not an official rating or MMR' : ''}</p>
+                  <span />
                   <Button
                     to={ready ? `/predict/${g.key}` : undefined}
                     disabled={!ready}

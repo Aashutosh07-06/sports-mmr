@@ -1,7 +1,6 @@
 import { useApi } from '../hooks/useApi'
 import { api } from '../services/api'
 
-/** Real backend health indicator (GET /api/health). */
 export default function ServerStatus() {
   const { data, loading, error } = useApi(() => api.health(), [])
   const ready = data ? Object.values(data.games).filter((s) => s === 'ready').length : 0

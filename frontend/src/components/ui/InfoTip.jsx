@@ -1,7 +1,7 @@
 import { useId, useState } from 'react'
 import { Info } from 'lucide-react'
 
-/** Accessible tooltip: opens on hover AND keyboard focus, described by aria-describedby. */
+// tooltip that also opens on keyboard focus
 export default function InfoTip({ text, label = 'More information', className = '' }) {
   const [open, setOpen] = useState(false)
   const id = useId()

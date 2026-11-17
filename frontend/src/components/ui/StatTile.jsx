@@ -4,7 +4,7 @@ export default function StatTile({ label, value, hint, help, className = '' }) {
   return (
     <div className={`hover-pop spotlight rounded-xl border border-line-soft bg-card px-4 py-3.5 ${className}`}>
       <div className="flex items-center gap-1">
-        <p className="eyebrow">{label}</p>
+        <p className="label-sm">{label}</p>
         {help && <InfoTip text={help} label={`About ${label}`} />}
       </div>
       <p className="num mt-1.5 text-2xl font-semibold text-ink">{value}</p>

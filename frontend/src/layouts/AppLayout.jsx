@@ -92,40 +92,16 @@ export default function AppLayout() {
       </main>
 
       <footer className="border-t border-line-soft">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <Logo />
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted">
-              Gaming &amp; Esports Performance Predictor — a B.Tech CSE (AI &amp; ML) project, ITM University Gwalior.
-              Predictions are statistical estimates from public datasets, not official ratings or MMR.
-            </p>
-          </div>
-          <div>
-            <p className="eyebrow mb-3">Product</p>
-            <ul className="space-y-2 text-sm">
-              {NAV.map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to} className="text-ink-2 hover:text-ink">
-                    {n.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="eyebrow mb-3">Data sources</p>
-            <ul className="space-y-2 text-sm text-ink-2">
-              <li>HLTV.org via Kaggle (CS:GO)</li>
-              <li>Kaggle PUBG competition</li>
-              <li>vlr.gg (VALORANT)</li>
-              <li>YASP / OpenDota via Kaggle (Dota 2)</li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-line-soft">
-          <p className="mx-auto max-w-7xl px-4 py-4 text-xs text-faint sm:px-6">
-            Not affiliated with Valve, KRAFTON, Riot Games, HLTV or vlr.gg. Game names are trademarks of their owners.
-          </p>
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-8 gap-y-4 px-4 py-8 sm:px-6">
+          <Logo />
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label="Footer">
+            {NAV.map((n) => (
+              <Link key={n.to} to={n.to} className="text-muted hover:text-ink">
+                {n.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-xs text-faint md:ml-auto">Data: HLTV, Kaggle, vlr.gg, OpenDota</p>
         </div>
       </footer>
     </div>

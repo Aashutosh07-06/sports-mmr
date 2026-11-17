@@ -22,7 +22,7 @@ const TOC = [
   ['future', 'Future scope'],
 ]
 
-// Leakage decisions documented in ml/<game>/feature_engineering.py
+// see ml/<game>/feature_engineering.py
 const EXCLUDED = {
   csgo: ['rating_ct / rating_t: parts of the target itself', 'Series-level rating when predicting a single map', 'Player, team and match identifiers'],
   pubg: [
@@ -40,9 +40,8 @@ export default function Methodology() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-      <SectionHeading as="h1" eyebrow="About & methodology" title="How the predictor was built">
-        The whole pipeline, from raw CSV files to an explained prediction, written so it can be explained in a project
-        viva. Dataset sizes, features and experiment results on this page are loaded from the trained artifacts.
+      <SectionHeading as="h1" title="How the predictor was built">
+        From the raw CSV files to an explained prediction.
       </SectionHeading>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[220px_1fr]">
@@ -152,11 +151,11 @@ export default function Methodology() {
                   return (
                     <Card key={info.schema.game} className="p-5">
                       <p className="font-bold text-ink">{info.schema.name}</p>
-                      <p className="eyebrow mt-3">User inputs ({inputs.size})</p>
+                      <p className="label-sm mt-3">User inputs ({inputs.size})</p>
                       <Chips items={info.schema.inputs.map((f) => f.label)} />
-                      <p className="eyebrow mt-3">Engineered features ({engineered.length})</p>
+                      <p className="label-sm mt-3">Engineered features ({engineered.length})</p>
                       <Chips items={engineered.map((f) => L[f] || f)} tone="cyan" />
-                      <p className="eyebrow mt-3">Deliberately excluded (leakage / unusable)</p>
+                      <p className="label-sm mt-3">Deliberately excluded (leakage / unusable)</p>
                       <ul className="mt-1.5 list-disc space-y-1 pl-5 text-sm text-ink-2">
                         {EXCLUDED[info.schema.game].map((e) => (
                           <li key={e}>{e}</li>
@@ -288,14 +287,13 @@ function TrueSkillExperiment({ e }) {
   return (
     <Card>
       <CardHeader
-        eyebrow="Experiment 1 · Dota 2"
-        title="Can gameplay stats predict TrueSkill (μ)?"
+        title="Experiment 1 (Dota 2): can gameplay stats predict TrueSkill (μ)?"
         action={<FlaskConical className="size-5 text-faint" aria-hidden />}
       />
       <CardBody>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[560px] text-sm">
-            <thead className="text-xs uppercase tracking-wider text-muted">
+            <thead className="text-xs text-muted">
               <tr className="border-b border-line-soft">
                 <th scope="col" className="py-2 text-left font-semibold">Min. games / player</th>
                 <th scope="col" className="px-2 py-2 text-right font-semibold">Players</th>
@@ -329,8 +327,7 @@ function RankedExperiment({ e }) {
   return (
     <Card>
       <CardHeader
-        eyebrow="Experiment 2 · VALORANT ranked ladder"
-        title="Can aggregated ranked stats predict rank tier?"
+        title="Experiment 2 (VALORANT): can ranked stats predict rank tier?"
         action={<FlaskConical className="size-5 text-faint" aria-hidden />}
       />
       <CardBody>

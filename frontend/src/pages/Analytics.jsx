@@ -31,8 +31,8 @@ export default function Analytics() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-      <SectionHeading as="h1" eyebrow="Analytics" title="Model & dataset analytics">
-        All figures come from training runs on held-out test data. Nothing on this page is typed in by hand.
+      <SectionHeading as="h1" title="Model & dataset analytics">
+        Results from the latest training run, measured on held-out test data.
       </SectionHeading>
 
       <Overview state={overview} />
@@ -75,11 +75,11 @@ function Overview({ state }) {
   const rows = [...state.data].sort((a, b) => GAME_ORDER.indexOf(a.key) - GAME_ORDER.indexOf(b.key))
   return (
     <Card className="mt-8 overflow-hidden">
-      <CardHeader eyebrow="Model performance by game" title="Selected model per game" description="Regression games are scored with R²/MAE, Dota 2 (classification) with ROC-AUC/accuracy." />
+      <CardHeader title="Selected model per game" description="Regression games are scored with R²/MAE, Dota 2 (classification) with ROC-AUC/accuracy." />
       <CardBody>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[720px] text-left text-sm">
-            <thead className="text-xs uppercase tracking-wider text-muted">
+            <thead className="text-xs text-muted">
               <tr className="border-b border-line-soft">
                 <th scope="col" className="py-2 pr-3 font-semibold">Game</th>
                 <th scope="col" className="px-3 py-2 font-semibold">Target</th>
@@ -174,7 +174,6 @@ function GamePanel({ game }) {
       {isReg ? (
         <div className="grid gap-6 xl:grid-cols-2">
           <HistogramChart
-            eyebrow="Residual analysis"
             title="Residuals (actual − predicted)"
             description={`Centred near zero = no systematic bias. Mean ${fmt(a.residual_summary.mean, 4)}, standard deviation ${fmt(a.residual_summary.std, 4)}.`}
             bins={a.residual_histogram}
@@ -201,7 +200,7 @@ function GamePanel({ game }) {
           />
           <CalibrationChart rows={a.calibration} />
           <Card>
-            <CardHeader eyebrow="Classification diagnostics" title="Confusion matrix" description={`${fmtInt(d.test_rows)} test player-matches.`} />
+            <CardHeader title="Confusion matrix" description={`${fmtInt(d.test_rows)} test player-matches.`} />
             <CardBody>
               <ConfusionMatrix data={a.confusion_matrix} />
             </CardBody>
@@ -210,7 +209,7 @@ function GamePanel({ game }) {
       )}
 
       <Card>
-        <CardHeader eyebrow="Data preparation" title="Cleaning log" description="Every cleaning step and how many rows it removed, recorded during training." />
+        <CardHeader title="Cleaning log" description="Every cleaning step and how many rows it removed, recorded during training." />
         <CardBody>
           <DataTable
             columns={[
@@ -249,7 +248,6 @@ function ModelComparison({ models, task }) {
   return (
     <div className="grid gap-6 xl:grid-cols-[1fr_1.2fr]">
       <ChartCard
-        eyebrow="Model comparison"
         title={`Test ${METRIC_LABELS[metric]} by algorithm`}
         description={`${LOWER_IS_BETTER.has(metric) ? 'Lower' : 'Higher'} is better. Highlighted = selected model.`}
         height={240}
@@ -274,11 +272,11 @@ function ModelComparison({ models, task }) {
         </div>
       </ChartCard>
       <Card>
-        <CardHeader eyebrow="Comparison table" title="All algorithms on the same test set" description="Train scores (first 50k training rows) help spot overfitting: a big train–test gap means the model memorised." />
+        <CardHeader title="All algorithms on the same test set" description="Train scores (first 50k training rows) help spot overfitting: a big train–test gap means the model memorised." />
         <CardBody>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[560px] text-sm">
-              <thead className="text-xs uppercase tracking-wider text-muted">
+              <thead className="text-xs text-muted">
                 <tr className="border-b border-line-soft">
                   <th scope="col" className="py-2 pr-2 text-left font-semibold">Model</th>
                   {keys.map((k) => (

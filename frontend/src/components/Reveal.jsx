@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 
-/** Subtle fade-up when a section scrolls into view (disabled for reduced-motion users). */
 export default function Reveal({ children, delay = 0, className = '' }) {
   return (
     <motion.div

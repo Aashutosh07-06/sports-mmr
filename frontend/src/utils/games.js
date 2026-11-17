@@ -1,7 +1,4 @@
-/**
- * Presentation-only metadata per game (icon, accent, wording).
- * Model facts (target, metrics, inputs) always come from the API — never from here.
- */
+// icons, colours and blurbs for each game (model details come from the API)
 import { Castle, Crosshair, Map, Zap } from 'lucide-react'
 
 export const GAME_META = {

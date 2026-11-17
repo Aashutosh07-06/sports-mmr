@@ -14,7 +14,7 @@ const SIZES = {
   lg: 'h-12 px-6 text-base gap-2',
 }
 
-/** Button that renders a <Link> when `to` is given. */
+// renders a <Link> when `to` is passed
 export default function Button({
   to,
   variant = 'primary',

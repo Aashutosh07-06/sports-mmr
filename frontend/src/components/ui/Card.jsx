@@ -6,11 +6,10 @@ export function Card({ className = '', children, as: Tag = 'section', ...props }
   )
 }
 
-export function CardHeader({ eyebrow, title, description, action, className = '' }) {
+export function CardHeader({ title, description, action, className = '' }) {
   return (
     <div className={`flex flex-wrap items-start justify-between gap-3 px-5 pt-5 sm:px-6 ${className}`}>
       <div className="min-w-0">
-        {eyebrow && <p className="eyebrow mb-1">{eyebrow}</p>}
         {title && <h3 className="text-base font-bold text-ink">{title}</h3>}
         {description && <p className="mt-1 text-sm text-muted">{description}</p>}
       </div>

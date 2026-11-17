@@ -1,6 +1,5 @@
 import { metaFor } from '../utils/games'
 
-/** Small square icon tile in the game's accent colour (no official logos are used). */
 export default function GameMark({ game, size = 'md', className = '' }) {
   const meta = metaFor(game)
   const Icon = meta.icon
